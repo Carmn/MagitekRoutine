@@ -86,6 +86,8 @@ namespace Magitek.Rotations
                 if (await SingleTarget.JugularRip()) return true;
                 if (await SingleTarget.DangerZone()) return true;
                 if (await SingleTarget.BlastingZone()) return true;
+                if (await SingleTarget.Hypervelocity()) return true;
+                if (await SingleTarget.DoubleDown()) return true;
 
                 if (GunbreakerSettings.Instance.UseAoe)
                     if (await Aoe.BowShock()) return true;
@@ -98,7 +100,8 @@ namespace Magitek.Rotations
                     if (await Aoe.FatedCircle()) return true;
                     if (await Aoe.DemonSlaughter()) return true;
                     if (await Aoe.DemonSlice()) return true;
-                }
+                    if (await SingleTarget.DoubleDown()) return true;
+            }
 
                 if (await SingleTarget.GnashingFang()) return true;
                 if (await SingleTarget.SonicBreak()) return true;
@@ -108,8 +111,10 @@ namespace Magitek.Rotations
                 if (await SingleTarget.SolidBarrel()) return true;
                 if (await SingleTarget.BrutalShell()) return true;
                 if (await SingleTarget.BurstStrike()) return true;
-            
-                if (Core.Me.HasAura(Auras.ReadytoRip))
+                if (await SingleTarget.Hypervelocity()) return true;
+                if (await SingleTarget.DoubleDown()) return true;
+
+            if (Core.Me.HasAura(Auras.ReadytoRip))
                     return await Spells.JugularRip.Cast(Core.Me.CurrentTarget);
                 if (Core.Me.HasAura(Auras.ReadytoTear))
                     return await Spells.AbdomenTear.Cast(Core.Me.CurrentTarget);
