@@ -39,6 +39,7 @@ namespace Magitek.Utilities
             List<SpellData> BlackMage = new List<SpellData>();
             List<SpellData> Summoner = new List<SpellData>();
             List<SpellData> RedMage = new List<SpellData>();
+            List<SpellData> BlueMage = new List<SpellData>();
 
             //Melee DPS
             List<SpellData> Rogue = new List<SpellData>();
@@ -48,6 +49,7 @@ namespace Magitek.Utilities
             List<SpellData> Lancer = new List<SpellData>();
             List<SpellData> Dragoon = new List<SpellData>();
             List<SpellData> Samurai = new List<SpellData>();
+            List<SpellData> Reaper = new List<SpellData>();
 
             //Tank
             List<SpellData> Gladiator = new List<SpellData>();
@@ -77,36 +79,49 @@ namespace Magitek.Utilities
 
                 //Adding Physical Ranged Role Abilitys
                 if (action.Value.IsPlayerAction && action.Value.SpellType == SpellType.Ability
-                                               && action.Value.JobTypes.Contains(ClassJobType.Bard) && action.Value.JobTypes.Contains(ClassJobType.Archer)
-                                               && action.Value.JobTypes.Contains(ClassJobType.Machinist) && action.Value.JobTypes.Contains(ClassJobType.Dancer))
+                                               && action.Value.JobTypes.Contains(ClassJobType.Bard) 
+                                               && action.Value.JobTypes.Contains(ClassJobType.Archer)
+                                               && action.Value.JobTypes.Contains(ClassJobType.Machinist) 
+                                               && action.Value.JobTypes.Contains(ClassJobType.Dancer))
                     PhysicalRangedRoleAbilitys.Add(action.Value);
 
                 //Adding Magic Ranged Role Abilitys
                 if (action.Value.IsPlayerAction && action.Value.SpellType == SpellType.Ability
-                                               && action.Value.JobTypes.Contains(ClassJobType.Thaumaturge) && action.Value.JobTypes.Contains(ClassJobType.BlackMage)
-                                               && action.Value.JobTypes.Contains(ClassJobType.Arcanist) && action.Value.JobTypes.Contains(ClassJobType.Summoner)
-                                               && action.Value.JobTypes.Contains(ClassJobType.RedMage))
+                                               && action.Value.JobTypes.Contains(ClassJobType.Thaumaturge) 
+                                               && action.Value.JobTypes.Contains(ClassJobType.BlackMage)
+                                               && action.Value.JobTypes.Contains(ClassJobType.Arcanist) 
+                                               && action.Value.JobTypes.Contains(ClassJobType.Summoner)
+                                               && action.Value.JobTypes.Contains(ClassJobType.RedMage)
+                                               && action.Value.JobTypes.Contains(ClassJobType.BlueMage))
                     MagicRangedRoleAbilitys.Add(action.Value);
 
                 //Adding Melee Role Abilitys
                 if (action.Value.IsPlayerAction && action.Value.SpellType == SpellType.Ability
-                                               && action.Value.JobTypes.Contains(ClassJobType.Pugilist) && action.Value.JobTypes.Contains(ClassJobType.Monk)
-                                               && action.Value.JobTypes.Contains(ClassJobType.Rogue) && action.Value.JobTypes.Contains(ClassJobType.Ninja)
-                                               && action.Value.JobTypes.Contains(ClassJobType.Lancer) && action.Value.JobTypes.Contains(ClassJobType.Dragoon)
+                                               && action.Value.JobTypes.Contains(ClassJobType.Pugilist) 
+                                               && action.Value.JobTypes.Contains(ClassJobType.Monk)
+                                               && action.Value.JobTypes.Contains(ClassJobType.Rogue) 
+                                               && action.Value.JobTypes.Contains(ClassJobType.Ninja)
+                                               && action.Value.JobTypes.Contains(ClassJobType.Lancer) 
+                                               && action.Value.JobTypes.Contains(ClassJobType.Dragoon)
                                                && action.Value.JobTypes.Contains(ClassJobType.Samurai))
                     MeleeRoleAbilitys.Add(action.Value);
 
                 //Adding Tank Role Abilitys
                 if (action.Value.IsPlayerAction && action.Value.SpellType == SpellType.Ability
-                                               && action.Value.JobTypes.Contains(ClassJobType.Gunbreaker) && action.Value.JobTypes.Contains(ClassJobType.DarkKnight)
-                                               && action.Value.JobTypes.Contains(ClassJobType.Gladiator) && action.Value.JobTypes.Contains(ClassJobType.Paladin)
-                                               && action.Value.JobTypes.Contains(ClassJobType.Marauder) && action.Value.JobTypes.Contains(ClassJobType.Warrior))
+                                               && action.Value.JobTypes.Contains(ClassJobType.Gunbreaker) 
+                                               && action.Value.JobTypes.Contains(ClassJobType.DarkKnight)
+                                               && action.Value.JobTypes.Contains(ClassJobType.Gladiator) 
+                                               && action.Value.JobTypes.Contains(ClassJobType.Paladin)
+                                               && action.Value.JobTypes.Contains(ClassJobType.Marauder) 
+                                               && action.Value.JobTypes.Contains(ClassJobType.Warrior))
                     TankRoleAbilitys.Add(action.Value);
 
                 //Adding Healer Role Abilitys
                 if (action.Value.IsPlayerAction && action.Value.SpellType == SpellType.Ability
-                                               && action.Value.JobTypes.Contains(ClassJobType.Conjurer) && action.Value.JobTypes.Contains(ClassJobType.WhiteMage)
-                                               && action.Value.JobTypes.Contains(ClassJobType.Scholar) && action.Value.JobTypes.Contains(ClassJobType.Astrologian))
+                                               && action.Value.JobTypes.Contains(ClassJobType.Conjurer) 
+                                               && action.Value.JobTypes.Contains(ClassJobType.WhiteMage)
+                                               && action.Value.JobTypes.Contains(ClassJobType.Scholar) 
+                                               && action.Value.JobTypes.Contains(ClassJobType.Astrologian))
                     HealerRoleAbilitys.Add(action.Value);
 
                 #endregion
@@ -180,6 +195,14 @@ namespace Magitek.Utilities
                     continue;
                 }
 
+                //BlueMage
+                if (action.Value.IsPlayerAction && action.Value.SpellType == SpellType.Ability
+                                                && action.Value.Job == ClassJobType.BlueMage)
+                {
+                    BlueMage.Add(action.Value);
+                    continue;
+                }
+
                 #endregion
 
                 #region MeleeDPS
@@ -228,6 +251,14 @@ namespace Magitek.Utilities
                                                 && action.Value.Job == ClassJobType.Samurai)
                 {
                     Samurai.Add(action.Value);
+                    continue;
+                }
+
+                //Reaper
+                if (action.Value.IsPlayerAction && (action.Value.SpellType == SpellType.Ability || action.Value.SpellType == SpellType.Spell)
+                                                && action.Value.Job == ClassJobType.Samurai)
+                {
+                    Reaper.Add(action.Value);
                     continue;
                 }
 
@@ -316,6 +347,9 @@ namespace Magitek.Utilities
             //MCH Flamethrower is an Ability but will trigger the GCD and cant be used during GCD
             Machinist.Remove(Spells.Flamethrower);
 
+            //BLU Phantom Flurry is an Ability but will trigger the GCD and cant be used during GCD
+            BlueMage.Remove(Spells.PhantomFlurry);
+
             //Adding All Skills Into Our Dictionary
 
             //Ranged Physical DPS
@@ -329,6 +363,7 @@ namespace Magitek.Utilities
             NonWeaponskills.Add(ClassJobType.BlackMage, BlackMage.Concat(MagicRangedRoleAbilitys).Concat(SystemAbilitys).ToList());
             NonWeaponskills.Add(ClassJobType.Summoner, Summoner.Concat(MagicRangedRoleAbilitys).Concat(SystemAbilitys).ToList());
             NonWeaponskills.Add(ClassJobType.RedMage, RedMage.Concat(MagicRangedRoleAbilitys).Concat(SystemAbilitys).ToList());
+            NonWeaponskills.Add(ClassJobType.BlueMage, BlueMage.Concat(MagicRangedRoleAbilitys).Concat(SystemAbilitys).ToList());
 
             //Melee DPS
             NonWeaponskills.Add(ClassJobType.Rogue, Rogue.Concat(MeleeRoleAbilitys).Concat(SystemAbilitys).ToList());
@@ -338,6 +373,7 @@ namespace Magitek.Utilities
             NonWeaponskills.Add(ClassJobType.Lancer, Lancer.Concat(MeleeRoleAbilitys).Concat(SystemAbilitys).ToList());
             NonWeaponskills.Add(ClassJobType.Dragoon, Dragoon.Concat(MeleeRoleAbilitys).Concat(SystemAbilitys).ToList());
             NonWeaponskills.Add(ClassJobType.Samurai, Samurai.Concat(MeleeRoleAbilitys).Concat(SystemAbilitys).ToList());
+            NonWeaponskills.Add(ClassJobType.Reaper, Reaper.Concat(MeleeRoleAbilitys).Concat(SystemAbilitys).ToList());
 
             //Tanks
             NonWeaponskills.Add(ClassJobType.Gladiator, Gladiator.Concat(TankRoleAbilitys).Concat(SystemAbilitys).ToList());

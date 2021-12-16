@@ -11,7 +11,7 @@
     <OutputType>library</OutputType>
     <RootNamespace>Magitek</RootNamespace>
     <AssemblyName>Magitek</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -54,8 +54,7 @@
     <Reference Include="PropertyChanged, Version=3.3.1.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>packages\PropertyChanged.Fody.3.3.1\lib\net40\PropertyChanged.dll</HintPath>
     </Reference>
-    <Reference Include="RebornBuddy, Version=1.0.292.0, Culture=neutral, PublicKeyToken=48d7174f8a943034, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="RebornBuddy">
       <HintPath>..\References\RebornBuddy.exe</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -148,6 +147,7 @@
     <Compile Include="Converters\SpellIdToSpellData.cs" />
     <Compile Include="Enumerations\BuffStrategy.cs" />
     <Compile Include="Enumerations\ChainStrategemStrategy.cs" />
+    <Compile Include="Enumerations\ReaperComboStages.cs" />
     <Compile Include="Enumerations\DancePartnerStrategy.cs" />
     <Compile Include="Enumerations\DragonSightStrategy.cs" />
     <Compile Include="Enumerations\GameVersion.cs" />
@@ -237,8 +237,18 @@
     <Compile Include="Logic\BlackMage\Aoe.cs" />
     <Compile Include="Logic\BlackMage\Buff.cs" />
     <Compile Include="Logic\BlackMage\SingleTarget.cs" />
+    <Compile Include="Logic\BlueMage\Dispel.cs" />
+    <Compile Include="Logic\BlueMage\Heal.cs" />
+    <Compile Include="Logic\Reaper\AoE.cs" />
+    <Compile Include="Logic\Reaper\Buff.cs" />
+    <Compile Include="Logic\Reaper\Cooldown.cs" />
+    <Compile Include="Logic\Reaper\SingleTarget.cs" />
+    <Compile Include="Logic\Reaper\Utility.cs" />
     <Compile Include="Logic\RedMage\CombatMessages.cs" />
     <Compile Include="Logic\RedMage\RdmStateMachine.cs" />
+    <Compile Include="Models\Reaper\ReaperSettings.cs" />
+    <Compile Include="Rotations\Reaper.cs" />
+    <Compile Include="Utilities\Routines\Reaper.cs" />
     <Compile Include="Utilities\Routines\StateMachine\IStateMachine.cs" />
     <Compile Include="Utilities\Routines\StateMachine\SmUtil.cs" />
     <Compile Include="Utilities\Routines\StateMachine\State.cs" />
@@ -547,6 +557,9 @@
     <Compile Include="Views\UserControls\BlackMage\SingleTarget.xaml.cs">
       <DependentUpon>SingleTarget.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\BlueMage\Utilities.xaml.cs">
+      <DependentUpon>Utilities.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\Bugs\Debug.xaml.cs">
       <DependentUpon>Debug.xaml</DependentUpon>
     </Compile>
@@ -682,6 +695,9 @@
     </Compile>
     <Compile Include="Views\UserControls\Paladin\TankSwap.xaml.cs">
       <DependentUpon>TankSwap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Reaper\SingleTarget.xaml.cs">
+      <DependentUpon>SingleTarget.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\RedMage\Aoe.xaml.cs" />
     <Compile Include="Views\UserControls\RedMage\Buffs.xaml.cs" />
@@ -998,6 +1014,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\BlueMage\Utilities.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\UserControls\Bugs\Debug.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1175,6 +1195,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\Paladin\TankSwap.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Reaper\SingleTarget.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
